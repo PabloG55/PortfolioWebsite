@@ -259,6 +259,10 @@ form .btn{
     font-weight: 300;
     margin-top: 20px;
 }
+.copyright a{
+    text-decoration: none;
+    color: #fff;
+}
 
 nav .fas{
     display: none; 
