@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio Website</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/0b4d3a9016.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<div id="header">
+    <div class="container">
+        <nav>
+            <img src="images/logo.png" class="logo">
+            <ul id="sidemenu">
+                <li><a href="#header">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <i class="fas fa-times" onclick="closemenu()"></i>
+            </ul>
+            <i class="fas fa-bars" onclick="openmenu()"></i>
+        </nav>
+        <div class="header-text">
+            <p>Computer Science Student</p>
+            <h1>Hey! I am <span>Pablo</span><br>Garces</h1>
+        </div>
+    </div>
+</div>
+<div id="about">
+    <div class="container">
+        <div class="row">
+            <div class="about-col-1">
+                <img src="images/user.png">
+            </div>
+            <div class="about-col-2">
+                <h1 class="sub-title about">About Me</h1>
+                <p>I am currently pursuing a Bachelor's in Computer Science with a focus on Software Engineering. With a solid foundation in JAVA programming and hands-on experience in project leadership and software development, I'm skilled in teamwork, problem-solving, and communication. My goal is to apply my technical skills to meaningful projects in software engineering, particularly those addressing sustainability and social impact.</p>
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                    <p class="tab-links" onclick="opentab('education')">Education</p>
+                </div>
+                <div class="tab-contents active-tab" id="skills">
+                    <ul><li><span>Proficient</span><br>JAVA</li>
+                    <ul><li><span>Competent</span><br>Git<br>C<br>Assembly<br>SQL</li>
+                    <ul><li><span>Basic</span><br>JavaScript<br>CSS<br>HTML<br>JAVAFX</li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="education">
+                    <ul><li><span>December 2025</span><br><span class="univ">University Of North Carolina at Charlotte</span><br>Bachelor in Science - Computer Science with a <br>concentration in Software Engineering</li>
+                    <ul><li><span>December 2023</span><br><span class="univ">Central Piedmont Community College</span><br>Associates of Arts - Computer Science</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="projects">
+    <div class="container">
+        <h1 class="sub-title project">My Projects</h1>
+        <div class="projects-list">
+            <div>
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <h2>Graphics Quality Recommendation Tool</h2>
+                <p>
+                    Java application for evaluating computer hardware performance based on GPU and CPU speeds,
+                    number processor cores, and monitor resolution, providing recommendations for optimal graphics quality settings.
+                </p>
+                <a href="https://github.com/PabloG55/ProjectCSC151.git" target="_blank">GitHub Repository</a>
+            </div>
+            <div>
+                <i class="fa-solid fa-music"></i>
+                <h2>Playlist Management System</h2>
+                <p>
+                    Java-based song and playlist management system using a doubly linked list, allowing users 
+                    to create, modify, and organize songs in a playlist.
+                </p>
+                <a href="https://github.com/PabloG55/Project1_DataStructures" target="_blank">GitHub Repository</a>
+            </div>    
+            <div>
+                <i class="fa-solid fa-money-check-dollar"></i>
+                <h2>Policy Price Calculator</h2>
+                <p>
+                    Java applciation for efficiently calculate policy prices by extracting data
+                    from a database utilizing SQL, highlighting expertise in algorithm development and effective utilization of Array Lists.
+                </p>
+                <a href="https://github.com/PabloG55/PolicyManagerr" target="_blank">GitHub Repository</a>
+            </div>               
+        </div>
+    </div>
+</div>
+
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title contact">Contact Me</h1>
+                <p><i class="fa-solid fa-envelope"></i> pgarcesb1@gmail.com</p>
+                <p><i class="fa-solid fa-phone"></i> +1 (980)358-7992</p>
+                <div class="social-icons">
+                    <a href="http://www.linkedin.com/in/pablogarces5" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://github.com/PabloG55" target="_blank"><i class="fa-brands fa-github"></i></a>
+                </div>
+                <a href="images/my-cv.pdf" download class="btn">Download CV</a>
+            </div>
+            <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="Email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn">Submit</button>
+                </form>
+                <span id="msg"></span>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>Copyright © Pablo Garces</p>
+    </div>
+</div>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyRAG5dV_3xDXy6xA7hTsFOoipw9LYptLcF8gbnQUCGl5J4LHAJkxFWhYEE1oLkKAE/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "Message sent successfully"
+            setTimeout(function(){
+                msg.innerHTML = "";
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+
+<script>
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+    
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link")
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab")
+        }
+        event.currentTarget.classList.add("active-link")
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+
+</script>
+
+<script>
+    var sidemenu = document.getElementById("sidemenu");
+
+    function openmenu(){
+        sidemenu.style.right = "0";
+    }
+    function closemenu(){
+        sidemenu.style.right = "-200px";
+    }
+
+</script>
+</body>
+</html>
